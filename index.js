@@ -9,7 +9,7 @@ const Searches = require('./models/searches');
 const main = async () => {
 	let opt = '';
 	let confirmOption = '';
-	const search = new Searches();
+	const searches = new Searches();
 
 	do {
 		const opt = await inquirerMenu();
@@ -18,8 +18,7 @@ const main = async () => {
 			case 1:
 				//Mostrar mensaje
 				const lugar = await readInput('Ciudad: ');
-				console.log(lugar);
-
+				await searches.ciudad(lugar);
 				//Buscar los lugares
 
 				//Seleccionar el lugar
