@@ -5,6 +5,7 @@ const {
 	confirm,
 } = require('./helpers/inquirer');
 const Searches = require('./models/searches');
+require('dotenv').config();
 
 const main = async () => {
 	let opt = '';
