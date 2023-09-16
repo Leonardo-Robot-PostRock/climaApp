@@ -7,13 +7,23 @@ class Searches {
 		//TODO: leer db si existe
 	}
 
+	get paramMapbox() {
+		return {
+			access_token:
+				'pk.eyJ1IjoibXJxd2VydHkiLCJhIjoiY2xtbDh5MzN4MDgxdTJrbndidXc4dDVqNyJ9.E_8Iwz8a3UiWzGGEDetqPg',
+			limit: 5,
+			language: 'es',
+		};
+	}
+
 	async ciudad(lugar = '') {
 		//petición http
-		// console.log('ciudad', lugar);
 		try {
-			const resp = await axios.get(
-				'https://api.mapbox.com/geocoding/v5/mapbox.places/madr.json?proximity=ip&language=es&access_token=pk.eyJ1IjoibXJxd2VydHkiLCJhIjoiY2xtbDh5MzN4MDgxdTJrbndidXc4dDVqNyJ9.E_8Iwz8a3UiWzGGEDetqPg&limit=5'
-			);
+			const instance = axios.create({
+				baseURL: `https://api.mapbox.com/geocoding/v5/mapbox.places/${lugar}.json?`,
+				params: this.paramMapbox,
+			});
+			const resp = await instance.get();
 			console.log(resp.data);
 
 			return []; // retornar los lugares que coincidan
