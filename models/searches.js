@@ -15,17 +15,22 @@ class Searches {
 		};
 	}
 
-	async ciudad(lugar = '') {
+	async city(place = '') {
 		//petición http
 		try {
 			const instance = axios.create({
-				baseURL: `https://api.mapbox.com/geocoding/v5/mapbox.places/${lugar}.json?`,
+				baseURL: `https://api.mapbox.com/geocoding/v5/mapbox.places/${place}.json?`,
 				params: this.paramMapbox,
 			});
 			const resp = await instance.get();
-			console.log(resp.data);
 
-			return []; // retornar los lugares que coincidan
+			return resp.data.features.map((place) => ({
+				id: place.id,
+				name: place.place_name,
+				center: place.center,
+				lng: place.center[0],
+				lat: place.center[1],
+			})); // retornar los lugares que coincidan
 		} catch (error) {
 			return [];
 		}
