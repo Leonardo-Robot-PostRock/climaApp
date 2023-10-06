@@ -36,6 +36,7 @@ const main = async () => {
 				);
 
 				//Mostrar resultados
+				console.clear();
 				console.log('\nInformación de la ciudad\n'.green);
 				console.log('Ciudad:', selectedPlace.name);
 				console.log('Lat:', selectedPlace.lat);
