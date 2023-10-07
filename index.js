@@ -26,8 +26,12 @@ const main = async () => {
 
 				//Seleccionar el lugar
 				const selectedId = await listPlaces(places);
+				if (selectedId === '0') continue;
 
 				const selectedPlace = places.find((place) => place.id === selectedId);
+
+				//Guardar en DB
+				searches.addHistory(selectedPlace.name);
 
 				//Clima
 				const weather = await searches.weatherPlace(
@@ -47,6 +51,10 @@ const main = async () => {
 				console.log('El clima actual es:', weather.desc);
 				break;
 			case 2:
+				searches.history.forEach((place, i) => {
+					idx = `${i + 1}.`.green;
+					console.log(`${idx} ${place}`);
+				});
 				break;
 			default:
 				break;
