@@ -51,7 +51,7 @@ const main = async () => {
 				console.log('El clima actual es:', weather.desc);
 				break;
 			case 2:
-				searches.history.forEach((place, i) => {
+				searches.capitalizedHistory.forEach((place, i) => {
 					idx = `${i + 1}.`.green;
 					console.log(`${idx} ${place}`);
 				});
