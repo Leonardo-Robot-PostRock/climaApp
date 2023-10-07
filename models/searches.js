@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 class Searches {
-	historial = ['Tegucigalpa', 'Madrid', 'San José'];
+	history = [];
 
 	constructor() {
 		//TODO: leer db si existe
@@ -65,6 +65,18 @@ class Searches {
 			console.log(error);
 		}
 	}
+
+	async addHistory(place = '') {
+		//TODO: prevenir duplicados
+		if (this.history.includes(place.toLocaleLowerCase())) {
+			return;
+		}
+		this.history.unshift(place.toLocaleLowerCase());
+
+		//Grabar en DB
+	}
+
+	guardarDB() {}
 }
 
 module.exports = Searches;
